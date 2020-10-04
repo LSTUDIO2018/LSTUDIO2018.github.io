@@ -1012,9 +1012,50 @@ function room1 ()
     room1()
 ```
 
+- Write  a  function  that  takes  an  arbitrary(任意)  number  of  values  and  returns  all  of  them,  except the first one
+
+```lua
+function foobar( ... )
+	return select(2,...)
+end
+
+print(foobar(1,2,nil,4,5,6,nil))
+-- 2	nil	4	5	6	nil
+```
+
+-  Write  a  function  that  takes  an  arbitrary  number  of  values  and  returns  all  of  them,  except the last one.
+
+```lua
+function bar( ... )
+	return table.unpack({...},1,select("#",...)-1)
+end
+print(bar(1,2,nil,4,5,nil,7))
+-- 1	2	nil	4	5	nil
+```
 
 
 
+
+
+## The External World
+
+#### The Simple I/O Model
+
+`io.read()`的读取模式:
+
+| "a"  | reads the whole file                       |
+| ---- | ------------------------------------------ |
+| "l"  | reads the next line (dropping the newline) |
+| "L"  | reads the next line (keeping the newline)  |
+| "n"  | reads a number                             |
+| num  | reads num characters as a string           |
+
+`io.input(filename) ` 
+
+- 使得文件状态成为一个输入流
+- 此时文件处在`read()`模式下(*current input stream*)
+  - 使用`io.read()`读取文件内容
+  - `io.close(filename)`关闭文件I/O流
 
 ## operator
 
